@@ -114,7 +114,7 @@ function App() {
           backgroundImage: `url(${bgImage})`,
         }}
       >
-        <div className="mx-auto max-w-md">
+        <div className="mx-auto px-4 md:px-0 max-w-md">
           <div className="pt-12 flex items-center justify-between">
             <h1 className="text-3xl font-semibold tracking-widest text-gray-100">
               TODO
@@ -129,7 +129,7 @@ function App() {
         </div>
       </header>
 
-      <main className="mx-auto -mt-28 max-w-md">
+      <main className="mx-auto -mt-28 px-4 md:px-0 max-w-md">
         <AddTodo addNewTodo={addNewTodo} />
         <TodoList
           activeTodosCount={activeTodosCount}
