@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { arrayMove } from 'react-sortable-hoc';
 import AddTodo from './AddTodo';
 import TodoList from './TodoList';
 import useToggle from './hooks/useToggle';
@@ -46,6 +47,11 @@ function App() {
       JSON.stringify(isDarkTheme ? 'dark' : 'light')
     );
   }, [isDarkTheme]);
+
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    const updatedTodos = arrayMove(todos, oldIndex, newIndex);
+    setTodos(updatedTodos);
+  };
 
   const addNewTodo = (newTodo) => {
     const updatedTodos = [...todos, newTodo];
@@ -133,7 +139,15 @@ function App() {
           filterTodos={filterTodos}
           removeTodo={removeTodo}
           removeCompletedTodo={removeCompletedTodo}
+          onSortEnd={onSortEnd}
+          axis="y"
+          distance={10}
+          useWindowAsScrollContainer={true}
         />
+
+        <p className="pt-8 pb-2 text-center text-sm text-gray-400 dark:text-gray-500">
+          Drag and drop to reorder list
+        </p>
       </main>
     </div>
   );
